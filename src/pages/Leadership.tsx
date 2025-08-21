@@ -1,6 +1,8 @@
 import { Award, Users, Code } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-
+import jpmclogo from "/company-logos/Jpmc.jpg";
+import tvslogo from "/company-logos/TVS-Credit.webp";
+import apekshalogo from "/company-logos/Apeksha.jpg";
 const Leadership = () => {
   const [visibleItems, setVisibleItems] = useState<boolean[]>([]);
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -10,6 +12,8 @@ const Leadership = () => {
       icon: Code,
       title: "Participant – JPMC CFG Hackathon",
       date: "June 28–29, 2025",
+      logo: jpmclogo,
+      logoClassName: "w-12 h-12",
       description: [
         "Built a multi-role React.js frontend with real-time dashboards, WhatsApp updates, and regional language support.",
         "Designed secure MongoDB schemas for attendance, progress, and job mapping.",
@@ -20,6 +24,7 @@ const Leadership = () => {
       icon: Award,
       title: "TVS Credit E.P.I.C. Challenge – Semi-Finalist",
       date: "2024",
+      logo: tvslogo,
       description: [
         "Achieved semi-finalist status among 40,000+ participants in a national analytics and IT competition.",
         "Led a team to design innovative fintech repayment solutions with real-world applicability.",
@@ -31,6 +36,7 @@ const Leadership = () => {
       icon: Users,
       title: "Mentor – APEKSHA",
       date: "August 2023 – Present",
+      logo: apekshalogo,
       description: [
         "Trained 20+ students in Python for data problem-solving.",
         "Developed coding resources for structured practice tasks."
@@ -103,9 +109,14 @@ const Leadership = () => {
                         >
                           {/* Header */}
                           <div className="flex items-start gap-4 mb-6">
-                            <div className="p-3 rounded-xl bg-cyan-500/20 border border-cyan-500/30">
-                              <Icon className="h-6 w-6 text-cyan-400" />
-                            </div>
+                            {achievement.logo && (
+                              <img src={achievement.logo} alt={`${achievement.title} logo`} className={`object-cover ${achievement.logoClassName || 'w-16.5 h-12 rounded-md'}`} />
+                            )}
+                            {!achievement.logo && (
+                              <div className="p-3 rounded-xl bg-cyan-500/20 border border-cyan-500/30">
+                                <Icon className="h-6 w-6 text-cyan-400" />
+                              </div>
+                            )}
                             <div className="text-left">
                               <h3 className="font-semibold text-xl text-white mb-1">{achievement.title}</h3>
                               <p className="text-sm text-cyan-400">{achievement.date}</p>
