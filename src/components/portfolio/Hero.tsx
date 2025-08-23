@@ -7,9 +7,9 @@ type HeroProps = {
   className?: string;
 };
 
-const TYPING_SPEED = 80; // Slower typing speed
+const TYPING_SPEED = 80;
 const DELETING_SPEED = 40;
-const PAUSE_TIME = 3000; // 3 seconds pause
+const PAUSE_TIME = 3000;
 
 const phrases = [
   "Data-Driven Software Engineer",
@@ -24,7 +24,7 @@ export const Hero: React.FC<HeroProps> = ({ className = "" }) => {
   const [display, setDisplay] = useState("");
   const [deleting, setDeleting] = useState(false);
   const [paused, setPaused] = useState(false);
-  
+
   const speed = useMemo(() => {
     if (paused) return PAUSE_TIME;
     return deleting ? DELETING_SPEED : TYPING_SPEED;
@@ -32,13 +32,13 @@ export const Hero: React.FC<HeroProps> = ({ className = "" }) => {
 
   const handleTypingEffect = useCallback(() => {
     const current = phrases[index % phrases.length];
-    
+
     if (paused) {
       setPaused(false);
       setDeleting(true);
       return;
     }
-    
+
     if (!deleting) {
       if (display.length < current.length) {
         setDisplay(current.slice(0, display.length + 1));
@@ -64,31 +64,23 @@ export const Hero: React.FC<HeroProps> = ({ className = "" }) => {
   }, [handleTypingEffect, speed]);
 
   return (
-    <section id="home" className="relative min-h-screen">
-      <div className="flex items-center justify-center min-h-screen">
-        {/* Main Content - Left Side Content, Right Side Photo */}
-        <div className="container mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left Side - Text Content with Slide Animation */}
-          <div className="text-left space-y-8 animate-slide-from-left">
-            {/* Main Heading */}
+    <section ref={containerRef} className={`relative flex items-center justify-center min-h-screen ${className}`}>
+      {/* Main Content */}
+      <div className="container mx-auto px-6">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          {/* Left Side */}
+          <div className="text-center lg:text-left space-y-8 animate-slide-from-left">
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold leading-tight mb-6 text-white">
-              Hi, I'm{" "}
-              <span className="text-cyan-400">
-                N.Ashish
-              </span>
+              Hi, I'm <span className="text-cyan-400">N.Ashish</span>
             </h1>
 
             {/* Typing Effect */}
-            <div className="text-2xl md:text-3xl lg:text-4xl text-gray-300 mb-8 min-h-[4rem] flex items-center">
+            <div className="text-2xl md:text-3xl lg:text-4xl text-gray-300 mb-8 min-h-[4rem] flex items-center justify-center lg:justify-start">
               I'm a{" "}
-              <span className="text-cyan-400 ml-2 typing-text">
-                {display}
-              </span>
+              <span className="text-cyan-400 ml-2 typing-text">{display}</span>
               <span className="animate-blink text-cyan-400 ml-1">|</span>
             </div>
 
-            {/* Description */}
             <p className="text-lg md:text-xl lg:text-2xl text-gray-400 max-w-2xl leading-relaxed">
               Transforming complex data into meaningful insights and building scalable solutions that drive innovation in the digital age.
             </p>
@@ -127,19 +119,19 @@ export const Hero: React.FC<HeroProps> = ({ className = "" }) => {
               </Button>
             </div>
 
-            {/* Social Links - Bigger Icons */}
+            {/* Social Links */}
             <div className="flex gap-4">
               <Button variant="ghost" size="icon" asChild className="text-gray-400 hover:text-cyan-400 hover:bg-cyan-400/10">
                 <a href="https://github.com/nashish109" target="_blank" rel="noopener noreferrer">
                   <Github className="h-8 w-8" />
                 </a>
               </Button>
-              <Button variant="ghost" size="icon" asChild className="text-gray-400 hover:text-pink-400 hover:bg-pink-400/10">
+              <Button variant="ghost" size="icon" asChild className="text-gray-400 hover:text-blue-400 hover:bg-blue-400/10">
                 <a href="https://www.linkedin.com/in/n-ashish-455b37244/" target="_blank" rel="noopener noreferrer">
                   <Linkedin className="h-8 w-8" />
                 </a>
               </Button>
-              <Button variant="ghost" size="icon" asChild className="text-gray-400 hover:text-purple-400 hover:bg-purple-400/10">
+              <Button variant="ghost" size="icon" asChild className="text-gray-400 hover:text-pink-400 hover:bg-pink-400/10">
                 <a href="https://www.instagram.com/nashish109" target="_blank" rel="noopener noreferrer">
                   <Instagram className="h-8 w-8" />
                 </a>
@@ -152,8 +144,8 @@ export const Hero: React.FC<HeroProps> = ({ className = "" }) => {
             </div>
           </div>
 
-          {/* Right Side - Profile Image with Slide Animation */}
-          <div className="flex justify-center lg:justify-end animate-slide-from-right">
+          {/* Right Side */}
+          <div className="flex justify-center lg:justify-end animate-slide-from-right mt-8 lg:mt-0">
             <div className="relative">
               <img
                 src="/lovable-uploads/2af5edec-412c-4f39-856e-dac49b168d46.png"
@@ -165,7 +157,7 @@ export const Hero: React.FC<HeroProps> = ({ className = "" }) => {
           </div>
         </div>
       </div>
-      </div>
+
       {/* Scroll Indicator */}
       <div className="absolute bottom-16 left-1/2 transform -translate-x-1/2 flex flex-col items-center text-gray-400 animate-bounce">
         <span className="text-sm mb-2">Scroll Down</span>

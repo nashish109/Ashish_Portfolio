@@ -15,7 +15,7 @@ type ProjectCardProps = {
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({ title, subtitle, tech, problem, solution, codeUrl, demoUrl, image }) => {
   return (
-    <div className="group relative overflow-hidden rounded-lg border hover:border-primary/50 transition-all duration-300 bg-card">
+    <div className="group relative overflow-hidden rounded-lg border hover:border-primary/50 transition-all duration-300 glassmorphism">
       {image && (
         <div className="w-full h-48 overflow-hidden">
           <img

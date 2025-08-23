@@ -114,7 +114,7 @@ const Leadership = () => {
                             )}
                             {!achievement.logo && (
                               <div className="p-3 rounded-xl bg-cyan-500/20 border border-cyan-500/30">
-                                <Icon className="h-6 w-6 text-cyan-400" />
+                                <Icon className="h-9 w-9 text-cyan-400" />
                               </div>
                             )}
                             <div className="text-left">

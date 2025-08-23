@@ -69,6 +69,14 @@
   .glass {
     @apply bg-gray-900 border border-gray-800 rounded-2xl;
   }
+  .glassmorphism {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
   .hover-scale { @apply transition-transform duration-200 hover:scale-105; }
 }
 
@@ -217,6 +225,17 @@
 }
 .animate-gradient-xy {
   animation: gradient-xy 15s ease infinite;
+}
+
+@keyframes gradient-flow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-gradient-flow {
+  background-size: 200% 200%;
+  animation: gradient-flow 10s ease infinite;
 }
 
 @keyframes float {

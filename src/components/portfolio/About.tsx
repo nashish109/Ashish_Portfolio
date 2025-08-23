@@ -1,6 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Download, MapPin, Languages, User, GraduationCap, Award, BookOpen, School, Globe, BarChart3, LineChart, Rocket, Users, Linkedin, ArrowDown } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import dpslogo from "/company-logos/dps_sh.webp";
+import kllogo from "/company-logos/Kl.jpg";
 
 export const About: React.FC<{ className?: string }> = ({ className = "" }) => {
   const [visibleItems, setVisibleItems] = useState<boolean[]>([]);
@@ -9,7 +11,7 @@ export const About: React.FC<{ className?: string }> = ({ className = "" }) => {
 
   const education = [
     {
-      icon: GraduationCap,
+      logo: kllogo,
       title: "B.Tech in Computer Science & Engineering",
       subtitle: "Data Science and Big Data Analytics",
       institution: "KL University, Vijayawada",
@@ -18,7 +20,7 @@ export const About: React.FC<{ className?: string }> = ({ className = "" }) => {
       subjects: ["Data Structures & Algorithms", "Operating Systems", "DBMS"]
     },
     {
-      icon: BookOpen,
+      logo: dpslogo,
       title: "High School",
       subtitle: "MPC (Mathematics, Physics, Chemistry)",
       institution: "Delhi Public School Damanjodi",
@@ -27,7 +29,7 @@ export const About: React.FC<{ className?: string }> = ({ className = "" }) => {
       subjects: ["Mathematics", "Physics", "Chemistry", "Computer Science"]
     },
     {
-      icon: School,
+      logo: dpslogo,
       title: "Secondary School",
       subtitle: "Class 6-10",
       institution: "Delhi Public School Damanjodi",
@@ -168,7 +170,7 @@ export const About: React.FC<{ className?: string }> = ({ className = "" }) => {
               {/* Timeline Items */}
               <div className="space-y-16">
                 {education.map((edu, index) => {
-                  const Icon = edu.icon;
+                  const Logo = edu.logo;
                   return (
                     <div
                       key={index}
@@ -189,9 +191,9 @@ export const About: React.FC<{ className?: string }> = ({ className = "" }) => {
                         >
                           {/* Header */}
                           <div className="flex items-center gap-4 mb-4">
-                            <div className="p-3 rounded-xl bg-cyan-500/20 border border-cyan-500/30">
-                              <Icon className="h-6 w-6 text-cyan-400" />
-                            </div>
+                            {Logo && (
+                              <img src={Logo} alt="logo" className="h-10 w-10 rounded-lg object-cover" />
+                            )}
                             <div className="text-left">
                               <h3 className="font-bold text-xl text-white">{edu.title}</h3>
                               <p className="text-cyan-300 text-sm font-medium">{edu.subtitle}</p>

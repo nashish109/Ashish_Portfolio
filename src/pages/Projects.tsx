@@ -9,7 +9,7 @@ const Projects = () => {
             Projects <span className="text-cyan-400">Showcase</span>
           </h2>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             <ProjectCard
               title="Movie Box Office Predictor"
               subtitle="Predictive Analytics Dashboard"
