@@ -6,6 +6,7 @@ import { ProjectCard } from "@/components/portfolio/ProjectCard";
 import { Contact } from "@/components/portfolio/Contact";
 import { ArrowDown, Rocket, Target, Code2, Briefcase } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const [visibleItems, setVisibleItems] = useState<boolean[]>([]);
@@ -86,10 +87,10 @@ const Home = () => {
       </div>
       
       {/* Skills Section */}
-      <section className="py-24">
+      <section className="py-16 sm:py-20 lg:py-24">
         <div
           ref={(el) => (itemRefs.current[0] = el)}
-          className={`container mx-auto px-6 transition-all duration-1000 ${
+          className={`container mx-auto px-4 sm:px-6 transition-all duration-1000 ${
             visibleItems[0]
               ? "opacity-100 translate-y-0"
               : "opacity-0 translate-y-8"
@@ -100,11 +101,11 @@ const Home = () => {
       </section>
 
       {/* Experience Section */}
-      <section className="py-24">
-        <div className="container mx-auto px-6">
+      <section className="py-16 sm:py-20 lg:py-24">
+        <div className="container mx-auto px-4 sm:px-6">
           <div
             ref={(el) => (itemRefs.current[1] = el)}
-            className={`text-center space-y-6 mb-16 transition-all duration-1000 ${
+            className={`text-center space-y-6 mb-10 sm:mb-16 transition-all duration-1000 ${
               visibleItems[1]
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 translate-y-8"
@@ -115,12 +116,12 @@ const Home = () => {
               <span className="text-sm font-medium">Professional Journey</span>
               <Briefcase className="h-5 w-5" />
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-white">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">
               Work <span className="text-cyan-400">Experience</span>
             </h2>
             <p
               ref={(el) => (itemRefs.current[3] = el)}
-              className={`text-gray-400 text-lg max-w-3xl mx-auto transition-all duration-1000 ${
+              className={`text-gray-400 text-base sm:text-lg max-w-3xl mx-auto transition-all duration-1000 ${
                 visibleItems[3]
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-8"
@@ -134,22 +135,22 @@ const Home = () => {
       </section>
 
       {/* Featured Projects */}
-      <section className="py-24">
-        <div className="container mx-auto px-6">
+      <section className="py-16 sm:py-20 lg:py-24">
+        <div className="container mx-auto px-4 sm:px-6">
           <div
             ref={(el) => (itemRefs.current[2] = el)}
-            className={`text-center space-y-6 mb-16 transition-all duration-1000 ${
+            className={`text-center space-y-6 mb-10 sm:mb-16 transition-all duration-1000 ${
               visibleItems[2]
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 translate-y-8"
             }`}
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-white">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">
               Featured <span className="text-cyan-400">Projects</span>
             </h2>
             <p
               ref={(el) => (itemRefs.current[4] = el)}
-              className={`text-gray-400 text-lg max-w-3xl mx-auto transition-all duration-1000 ${
+              className={`text-gray-400 text-base sm:text-lg max-w-3xl mx-auto transition-all duration-1000 ${
                 visibleItems[4]
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-8"
@@ -159,7 +160,7 @@ const Home = () => {
             </p>
           </div>
           
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
             {featuredProjects.map((project, index) => (
               <div
                 key={project.title}
@@ -183,13 +184,25 @@ const Home = () => {
                 : "opacity-0 translate-y-8"
             }`}
           >
-            <a
-              href="/portfolio/projects"
-              className="inline-flex items-center gap-2 bg-cyan-600 hover:bg-cyan-500 text-white px-8 py-3 rounded-xl font-semibold"
+            <Link
+              to="/portfolio/projects"
+              onClick={() => {
+                const scrollY = window.scrollY;
+
+                sessionStorage.setItem("portfolio-scroll:/portfolio", String(scrollY));
+                window.history.replaceState(
+                  {
+                    ...window.history.state,
+                    portfolioScrollY: scrollY,
+                  },
+                  ""
+                );
+              }}
+              className="inline-flex w-full sm:w-auto items-center justify-center gap-2 bg-cyan-600 hover:bg-cyan-500 text-white px-6 sm:px-8 py-3 rounded-xl font-semibold"
             >
               View All Projects
               <ArrowDown className="h-5 w-5" />
-            </a>
+            </Link>
           </div>
         </div>
       </section>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Button } from "@/components/ui/button";
 import { Github, ExternalLink, Code2 } from "lucide-react";
 
@@ -25,9 +25,9 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ title, subtitle, tech,
           />
         </div>
       )}
-      <div className="p-6 space-y-4">
+      <div className="p-5 sm:p-6 space-y-4">
         <div className="space-y-2">
-          <h3 className="text-xl font-semibold group-hover:text-primary transition-colors">{title}</h3>
+          <h3 className="text-lg sm:text-xl font-semibold group-hover:text-primary transition-colors">{title}</h3>
           <p className="text-sm text-muted-foreground">{subtitle}</p>
         </div>
         
@@ -57,16 +57,16 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ title, subtitle, tech,
           </div>
         </div>
 
-        <div className="flex gap-3 pt-2">
+        <div className="flex flex-col sm:flex-row gap-3 pt-2">
           {codeUrl && (
-            <Button variant="outline" size="sm" className="gap-2" asChild>
+            <Button variant="outline" size="sm" className="w-full sm:w-auto gap-2" asChild>
               <a href={codeUrl} target="_blank" rel="noopener noreferrer">
                 <Github className="h-4 w-4" /> Code
               </a>
             </Button>
           )}
           {demoUrl && (
-            <Button size="sm" className="gap-2" asChild>
+            <Button size="sm" className="w-full sm:w-auto gap-2" asChild>
               <a href={demoUrl} target="_blank" rel="noopener noreferrer">
                 <ExternalLink className="h-4 w-4" /> Live Demo
               </a>

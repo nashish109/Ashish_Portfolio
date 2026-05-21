@@ -70,7 +70,7 @@ export const Timeline = () => {
     <div className="max-w-4xl mx-auto">
       <div className="relative">
         {/* Vertical Timeline Line */}
-        <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-cyan-500 via-cyan-400 to-transparent"></div>
+        <div className="absolute left-4 sm:left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-cyan-500 via-cyan-400 to-transparent"></div>
         
         {/* Timeline Items */}
         <div className="space-y-12">
@@ -81,21 +81,21 @@ export const Timeline = () => {
               ref={(el) => itemRefs.current[index] = el}
             >
               {/* Timeline Dot */}
-              <div className="absolute left-6 top-2 w-4 h-4 bg-cyan-500 rounded-full border-4 border-black shadow-lg z-10"></div>
+              <div className="absolute left-2 sm:left-6 top-2 w-4 h-4 bg-cyan-500 rounded-full border-4 border-black shadow-lg z-10"></div>
               
               {/* Content Card */}
-              <div className="ml-16 flex-1">
+              <div className="ml-8 sm:ml-16 flex-1 min-w-0">
                 <div
-                  className={`bg-gray-900 border border-gray-800 rounded-2xl p-6 hover:border-cyan-500/50 hover:shadow-lg transition-all duration-1000 ${
+                  className={`bg-gray-900 border border-gray-800 rounded-2xl p-4 sm:p-6 hover:border-cyan-500/50 hover:shadow-lg transition-all duration-1000 ${
                     visibleItems[index] 
                       ? 'opacity-100 translate-y-0' 
                       : 'opacity-0 translate-y-8'
                   }`}
                 >
                   {/* Header */}
-                  <div className="flex items-start gap-4 mb-6">
+                  <div className="flex flex-col sm:flex-row items-start gap-4 mb-6">
                     {item.logo && (
-                      <img src={item.logo} alt={`${item.org} logo`} className="w-16.5 h-12 rounded-md object-cover" />
+                      <img src={item.logo} alt={`${item.org} logo`} className="w-16 h-12 rounded-md object-cover" />
                     )}
                     <div className="text-left">
                       <h3 className="font-semibold text-xl text-white mb-1">{item.role}</h3>

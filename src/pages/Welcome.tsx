@@ -16,7 +16,7 @@ const Welcome = () => {
         if (prev >= 100) {
           clearInterval(progressInterval);
           // Redirect to main portfolio after completion
-          setTimeout(() => navigate("/portfolio"), 1000);
+          setTimeout(() => navigate("/portfolio", { replace: true }), 1000);
           return 100;
         }
         return prev + 10;
