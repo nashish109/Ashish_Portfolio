@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Download, MapPin, Languages, User, GraduationCap, Award, BookOpen, School, Globe, BarChart3, LineChart, Rocket, Users, Linkedin, ArrowDown } from "lucide-react";
+import { Download, MapPin, Languages, User, GraduationCap, Award, Globe, BarChart3, LineChart, Rocket, Users, Linkedin, ArrowDown } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import dpslogo from "/company-logos/dps_sh.webp";
 import kllogo from "/company-logos/Kl.jpg";
@@ -7,7 +7,12 @@ import kllogo from "/company-logos/Kl.jpg";
 export const About: React.FC<{ className?: string }> = ({ className = "" }) => {
   const [visibleItems, setVisibleItems] = useState<boolean[]>([]);
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const [activeTab, setActiveTab] = useState(0);
+  const scrollToEducation = () => {
+    document.getElementById("education")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
 
   const education = [
     {
@@ -67,8 +72,8 @@ export const About: React.FC<{ className?: string }> = ({ className = "" }) => {
   }, []);
 
   return (
-    <section id="about" className={`py-16 ${className}`}>
-      <div className="container mx-auto px-6 relative">
+    <section id="about" className={`py-14 ${className}`}>
+      <div className="container mx-auto px-4 sm:px-6 relative">
         {/* Scroll Indicator */}
         <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex flex-col items-center text-gray-400 animate-bounce">
           <ArrowDown className="h-6 w-6" />
@@ -82,11 +87,11 @@ export const About: React.FC<{ className?: string }> = ({ className = "" }) => {
           </div>
 
           {/* Two Column Layout - Who I Am and Personal Info */}
-          <div className="grid lg:grid-cols-5 gap-12 max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-5 gap-8 lg:gap-12 max-w-6xl mx-auto">
             {/* Left Side - Who I Am */}
             <div className="lg:col-span-3 space-y-6">
               <h3 className="text-2xl font-bold text-white text-left">Who I Am</h3>
-              <div className="bg-gray-900 border border-gray-800 rounded-2xl p-8">
+              <div className="bg-gray-900 border border-gray-800 rounded-2xl p-5 sm:p-8">
                 <div className="text-gray-300 space-y-6 leading-relaxed text-left">
                   {/* Intro */}
                   <p>
@@ -127,45 +132,58 @@ export const About: React.FC<{ className?: string }> = ({ className = "" }) => {
             {/* Right Side - Personal Information */}
             <div className="lg:col-span-2 space-y-6">
               <h3 className="text-2xl font-bold text-white text-left">Personal Information</h3>
-              <div className="bg-gray-900 border border-gray-800 rounded-2xl p-8 text-left">
+              <div className="bg-gray-900 border border-gray-800 rounded-2xl p-5 sm:p-8 text-left">
                 <div className="space-y-6">
-                  <div className="space-y-4 text-lg">
-                    <div className="flex items-center gap-3">
-                      <MapPin className="h-5 w-5 text-cyan-400" />
+                  <div className="space-y-4 text-base sm:text-lg">
+                    <div className="flex items-start gap-3">
+                      <MapPin className="h-5 w-5 shrink-0 text-cyan-400 mt-1" />
                       <span className="text-gray-300"><strong className="text-white">From:</strong> Damanjodi, Koraput, Odisha</span>
                     </div>
-                    <div className="flex items-center gap-3">
-                      <Languages className="h-5 w-5 text-cyan-400" />
+                    <div className="flex items-start gap-3">
+                      <Languages className="h-5 w-5 shrink-0 text-cyan-400 mt-1" />
                       <span className="text-gray-300"><strong className="text-white">Languages:</strong> English, Hindi, Telugu, Odia</span>
                     </div>
-                    <div className="flex items-center gap-3">
-                      <User className="h-5 w-5 text-cyan-400" />
+                    <div className="flex items-start gap-3">
+                      <User className="h-5 w-5 shrink-0 text-cyan-400 mt-1" />
                       <span className="text-gray-300"><strong className="text-white">Age:</strong> 21</span>
                     </div>
-                    <div className="flex items-center gap-3">
-                      <User className="h-5 w-5 text-cyan-400" />
+                    <div className="flex items-start gap-3">
+                      <User className="h-5 w-5 shrink-0 text-cyan-400 mt-1" />
                       <span className="text-gray-300"><strong className="text-white">Gender:</strong> Male</span>
                     </div>
-                    <div className="flex items-center gap-3">
-                      <Download className="h-5 w-5 text-cyan-400" />
-                      <a href="mailto:nashish109@gmail.com" className="text-gray-300 hover:text-cyan-400"><strong className="text-white">Mail:</strong> nashish109@gmail.com</a>
+                    <div className="flex items-start gap-3">
+                      <Download className="h-5 w-5 shrink-0 text-cyan-400 mt-1" />
+                      <a href="mailto:nashish109@gmail.com" className="min-w-0 break-words text-gray-300 hover:text-cyan-400"><strong className="text-white">Mail:</strong> nashish109@gmail.com</a>
                     </div>
-                    <div className="flex items-center gap-3">
-                      <Linkedin className="h-5 w-5 text-cyan-400" />
+                    <div className="flex items-start gap-3">
+                      <Linkedin className="h-5 w-5 shrink-0 text-cyan-400 mt-1" />
                       <a href="https://www.linkedin.com/in/n-ashish-455b37244/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-cyan-400"><strong className="text-white">LinkedIn</strong></a>
                     </div>
                   </div>
                 </div>
               </div>
+
+              <Button
+                onClick={scrollToEducation}
+                className="w-full bg-cyan-600 hover:bg-cyan-500 text-white border-0"
+              >
+                View Education
+                <ArrowDown className="ml-2 h-4 w-4" />
+              </Button>
             </div>
           </div>
 
           {/* Education Section */}
-          <div className="max-w-4xl mx-auto">
-            <h3 className="text-4xl font-bold text-white text-center my-16">Education</h3>
+          <div id="education" className="max-w-4xl mx-auto scroll-mt-24">
+            <div className="text-center mt-10 mb-10">
+              <h3 className="inline-flex flex-wrap items-center justify-center gap-3 text-2xl sm:text-3xl md:text-4xl font-bold text-white">
+                <GraduationCap className="h-6 w-6 sm:h-7 sm:w-7 text-cyan-400" />
+                Academic <span className="text-cyan-400">Journey</span>
+              </h3>
+            </div>
             <div className="relative">
               {/* Vertical Timeline Line */}
-              <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-cyan-500 via-cyan-400 to-transparent"></div>
+              <div className="absolute left-4 sm:left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-cyan-500 via-cyan-400 to-transparent"></div>
               
               {/* Timeline Items */}
               <div className="space-y-16">
@@ -178,19 +196,19 @@ export const About: React.FC<{ className?: string }> = ({ className = "" }) => {
                       ref={(el) => itemRefs.current[index] = el}
                     >
                       {/* Timeline Dot */}
-                      <div className="absolute left-6 top-2 w-4 h-4 bg-cyan-500 rounded-full border-4 border-black shadow-lg z-10"></div>
+                      <div className="absolute left-2 sm:left-6 top-2 w-4 h-4 bg-cyan-500 rounded-full border-4 border-black shadow-lg z-10"></div>
                       
                       {/* Content Card */}
-                      <div className="ml-16 flex-1">
+                      <div className="ml-8 sm:ml-16 flex-1 min-w-0">
                         <div
-                          className={`bg-gray-900 border border-gray-800 rounded-2xl p-8 hover:border-cyan-500/50 hover:shadow-lg transition-all duration-1000 ${
+                          className={`bg-gray-900 border border-gray-800 rounded-2xl p-4 sm:p-8 hover:border-cyan-500/50 hover:shadow-lg transition-all duration-1000 ${
                             visibleItems[index]
                               ? 'opacity-100 translate-y-0'
                               : 'opacity-0 translate-y-8'
                           }`}
                         >
                           {/* Header */}
-                          <div className="flex items-center gap-4 mb-4">
+                          <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-4">
                             {Logo && (
                               <img src={Logo} alt="logo" className="h-10 w-10 rounded-lg object-cover" />
                             )}
@@ -201,7 +219,7 @@ export const About: React.FC<{ className?: string }> = ({ className = "" }) => {
                           </div>
                           
                           {/* Institution and Duration */}
-                          <div className="ml-16 text-left">
+                          <div className="sm:ml-16 text-left">
                             <p className="text-gray-200 font-semibold">{edu.institution}</p>
                             <p className="text-gray-300 text-sm">{edu.duration}</p>
                             <div className="flex items-center gap-2 mt-2">
@@ -211,7 +229,7 @@ export const About: React.FC<{ className?: string }> = ({ className = "" }) => {
                           </div>
                           
                           {/* Subjects */}
-                          <div className="ml-16 text-left mt-4">
+                          <div className="sm:ml-16 text-left mt-4">
                             <p className="text-gray-400 text-sm mb-2">Subjects:</p>
                             <div className="flex flex-wrap gap-2">
                               {edu.subjects.map((subject, subjectIndex) => (

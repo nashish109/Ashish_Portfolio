@@ -2,14 +2,14 @@ import { ProjectCard } from "@/components/portfolio/ProjectCard";
 
 const Projects = () => {
   return (
-    <div className="py-8">
-      <section className="container mx-auto px-6">
-        <div className="text-center space-y-8">
-          <h2 className="text-4xl md:text-5xl font-bold text-white">
+    <div className="py-2">
+      <section className="container mx-auto px-4 sm:px-6">
+        <div className="text-center space-y-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">
             Projects <span className="text-cyan-400">Showcase</span>
           </h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">
             <ProjectCard
               title="Movie Box Office Predictor"
               subtitle="Predictive Analytics Dashboard"

@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
+import { Mail } from "lucide-react";
 import { useState } from "react";
 
 type ContactProps = {
@@ -58,8 +59,16 @@ export const Contact: React.FC<ContactProps> = ({ className = "" }) => {
   };
 
   return (
-    <section id="contact" className={`container py-20 scroll-mt-32 ${className}`}>
-      <h2 className="text-3xl font-display mb-6">Get In Touch</h2>
+    <section id="contact" className={`container px-4 py-16 sm:px-6 sm:py-20 scroll-mt-32 ${className}`}>
+      <div className="text-center space-y-3 mb-10">
+        <div className="inline-flex items-center justify-center gap-2 text-cyan-400">
+          <Mail className="h-5 w-5" />
+          <span className="text-sm font-medium">Let&apos;s Connect</span>
+        </div>
+        <h2 className="text-4xl md:text-5xl font-bold text-white">
+          Get In <span className="text-cyan-400">Touch</span>
+        </h2>
+      </div>
       <div className="max-w-xl mx-auto">
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="space-y-2">
@@ -71,7 +80,7 @@ export const Contact: React.FC<ContactProps> = ({ className = "" }) => {
               id="name"
               name="name"
               required
-              className="w-full px-4 py-2 rounded-lg border border-white/10 bg-background/40"
+              className="w-full px-4 py-3 rounded-lg border border-gray-700 bg-gray-800/80 text-white placeholder:text-gray-500 transition-colors focus:border-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-400/20"
             />
           </div>
           <div className="space-y-2">
@@ -83,7 +92,7 @@ export const Contact: React.FC<ContactProps> = ({ className = "" }) => {
               id="email"
               name="email"
               required
-              className="w-full px-4 py-2 rounded-lg border border-white/10 bg-background/40"
+              className="w-full px-4 py-3 rounded-lg border border-gray-700 bg-gray-800/80 text-white placeholder:text-gray-500 transition-colors focus:border-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-400/20"
             />
           </div>
           <div className="space-y-2">
@@ -95,7 +104,7 @@ export const Contact: React.FC<ContactProps> = ({ className = "" }) => {
               name="message"
               required
               rows={4}
-              className="w-full px-4 py-2 rounded-lg border border-white/10 bg-background/40"
+              className="w-full px-4 py-3 rounded-lg border border-gray-700 bg-gray-800/80 text-white placeholder:text-gray-500 transition-colors focus:border-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-400/20"
             ></textarea>
           </div>
           <Button type="submit" className="w-full" disabled={isLoading}>
