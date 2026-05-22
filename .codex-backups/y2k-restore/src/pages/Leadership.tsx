@@ -75,8 +75,7 @@ const Leadership = () => {
     <div className="pt-8 pb-16">
       <section className="container mx-auto px-4 sm:px-6">
         <div className="text-center space-y-12">
-          <p className="retro-kicker">Achievement Database</p>
-          <h2 className="retro-title text-3xl sm:text-4xl md:text-5xl mb-8">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-8">
             Leadership & <span className="text-cyan-400">Achievements</span>
           </h2>
           
@@ -84,7 +83,7 @@ const Leadership = () => {
           <div className="max-w-4xl mx-auto">
             <div className="relative">
               {/* Vertical Timeline Line */}
-              <div className="absolute left-4 sm:left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-emerald-300 via-cyan-300 to-transparent shadow-[0_0_18px_rgba(34,211,238,0.35)]"></div>
+              <div className="absolute left-4 sm:left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-cyan-500 via-cyan-400 to-transparent"></div>
               
               {/* Timeline Items */}
               <div className="space-y-12">
@@ -97,12 +96,12 @@ const Leadership = () => {
                       ref={(el) => itemRefs.current[index] = el}
                     >
                       {/* Timeline Dot */}
-                      <div className="absolute left-2 sm:left-6 top-2 w-4 h-4 bg-emerald-300 border-4 border-black shadow-[0_0_18px_rgba(52,211,153,0.8)] z-10"></div>
+                      <div className="absolute left-2 sm:left-6 top-2 w-4 h-4 bg-cyan-500 rounded-full border-4 border-black shadow-lg z-10"></div>
                       
                       {/* Content Card */}
                       <div className="ml-8 sm:ml-16 flex-1 min-w-0">
                         <div
-                          className={`retro-window p-4 pt-8 sm:p-6 sm:pt-10 transition-all duration-1000 ${
+                          className={`bg-gray-900 border border-gray-800 rounded-2xl p-4 sm:p-6 hover:border-cyan-500/50 hover:shadow-lg transition-all duration-1000 ${
                             visibleItems[index] 
                               ? 'opacity-100 translate-y-0' 
                               : 'opacity-0 translate-y-8'
@@ -111,10 +110,10 @@ const Leadership = () => {
                           {/* Header */}
                           <div className="flex flex-col sm:flex-row items-start gap-4 mb-6">
                             {achievement.logo && (
-                              <img src={achievement.logo} alt={`${achievement.title} logo`} className={`border border-cyan-300/30 object-cover ${achievement.logoClassName || 'w-16 h-12'}`} />
+                              <img src={achievement.logo} alt={`${achievement.title} logo`} className={`object-cover ${achievement.logoClassName || 'w-16 h-12 rounded-md'}`} />
                             )}
                             {!achievement.logo && (
-                              <div className="p-3 bg-black border border-cyan-500/50">
+                              <div className="p-3 rounded-xl bg-cyan-500/20 border border-cyan-500/30">
                                 <Icon className="h-9 w-9 text-cyan-400" />
                               </div>
                             )}

@@ -12,9 +12,9 @@ interface TimelineItem {
 
 const items: TimelineItem[] = [
   {
-    role: "IT Intern – DTCC",
+    role: "IT Intern - DTCC",
     org: "Chennai, Tamil Nadu",
-    period: "May 2025 – July 2025",
+    period: "May 2025 - July 2025",
     logo: dtccLogo,
     bullets: [
       "Contributed to a Trade Reconciliation project focusing on frontend development and database design.",
@@ -23,9 +23,9 @@ const items: TimelineItem[] = [
     ],
   },
   {
-    role: "Data Engineering Intern – AICTE",
+    role: "Data Engineering Intern - AICTE",
     org: "Remote",
-    period: "June 2024 – August 2024",
+    period: "June 2024 - August 2024",
     logo: aicteLogo,
     bullets: [
       "Developed and maintained data pipelines using Python and SQL.",
@@ -43,9 +43,9 @@ export const Timeline = () => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          const index = itemRefs.current.findIndex(ref => ref === entry.target);
+          const index = itemRefs.current.findIndex((ref) => ref === entry.target);
           if (index !== -1 && entry.isIntersecting) {
-            setVisibleItems(prev => {
+            setVisibleItems((prev) => {
               const newItems = [...prev];
               newItems[index] = true;
               return newItems;
@@ -53,10 +53,7 @@ export const Timeline = () => {
           }
         });
       },
-      {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-      }
+      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
     );
 
     itemRefs.current.forEach((ref) => {
@@ -67,52 +64,42 @@ export const Timeline = () => {
   }, []);
 
   return (
-    <div className="max-w-4xl mx-auto">
+    <div className="mx-auto max-w-4xl">
       <div className="relative">
-        {/* Vertical Timeline Line */}
-        <div className="absolute left-4 sm:left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-cyan-500 via-cyan-400 to-transparent"></div>
-        
-        {/* Timeline Items */}
+        <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-gradient-to-b from-emerald-300 via-cyan-300 to-transparent shadow-[0_0_18px_rgba(34,211,238,0.35)] sm:left-8" />
+
         <div className="space-y-12">
           {items.map((item, index) => (
-            <div 
-              key={index} 
-              className="relative flex items-start"
-              ref={(el) => itemRefs.current[index] = el}
-            >
-              {/* Timeline Dot */}
-              <div className="absolute left-2 sm:left-6 top-2 w-4 h-4 bg-cyan-500 rounded-full border-4 border-black shadow-lg z-10"></div>
-              
-              {/* Content Card */}
-              <div className="ml-8 sm:ml-16 flex-1 min-w-0">
-                <div
-                  className={`bg-gray-900 border border-gray-800 rounded-2xl p-4 sm:p-6 hover:border-cyan-500/50 hover:shadow-lg transition-all duration-1000 ${
-                    visibleItems[index] 
-                      ? 'opacity-100 translate-y-0' 
-                      : 'opacity-0 translate-y-8'
-                  }`}
-                >
-                  {/* Header */}
-                  <div className="flex flex-col sm:flex-row items-start gap-4 mb-6">
-                    {item.logo && (
-                      <img src={item.logo} alt={`${item.org} logo`} className="w-16 h-12 rounded-md object-cover" />
-                    )}
-                    <div className="text-left">
-                      <h3 className="font-semibold text-xl text-white mb-1">{item.role}</h3>
-                      <p className="text-sm text-cyan-400">{item.org}</p>
-                      <p className="text-sm text-cyan-400">{item.period}</p>
+            <div key={item.role} className="relative flex items-start" ref={(el) => (itemRefs.current[index] = el)}>
+              <div className="absolute left-2 top-2 z-10 h-4 w-4 border-4 border-black bg-emerald-300 shadow-[0_0_18px_rgba(52,211,153,0.8)] sm:left-6" />
+
+              <div className="ml-8 min-w-0 flex-1 sm:ml-16">
+                <div className={`retro-window transition-all duration-1000 ${visibleItems[index] ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}`}>
+                  <div className="p-4 pt-8 sm:p-6 sm:pt-10">
+                    <div className="mb-5 border border-cyan-300/45 bg-black px-3 py-2 text-left font-mono text-xs text-cyan-100 shadow-[inset_1px_1px_0_rgba(255,255,255,0.12)]">
+                      LOG_ENTRY_{String(index + 1).padStart(2, "0")} / {item.period}
                     </div>
+
+                    <div className="mb-6 flex flex-col items-start gap-4 sm:flex-row">
+                      {item.logo && (
+                        <img src={item.logo} alt={`${item.org} logo`} className="h-12 w-16 border border-cyan-300/30 object-cover" />
+                      )}
+                      <div className="text-left">
+                        <h3 className="mb-1 text-xl font-semibold text-white">{item.role}</h3>
+                        <p className="text-sm text-cyan-300">{item.org}</p>
+                        <p className="text-sm text-slate-400">{item.period}</p>
+                      </div>
+                    </div>
+
+                    <ul className="ml-2 space-y-3 text-left text-sm text-gray-300">
+                      {item.bullets.map((bullet) => (
+                        <li key={bullet} className="flex items-start gap-3">
+                          <span className="mt-1 text-emerald-300">&gt;</span>
+                          <span className="flex-1 leading-relaxed">{bullet}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                  
-                  {/* Description with Bullet Points */}
-                  <ul className="text-gray-300 space-y-3 text-sm ml-2 text-left">
-                    {item.bullets.map((bullet, itemIndex) => (
-                      <li key={itemIndex} className="flex items-start gap-3">
-                        <span className="text-cyan-400 mt-1">•</span>
-                        <span className="flex-1 leading-relaxed">{bullet}</span>
-                      </li>
-                    ))}
-                  </ul>
                 </div>
               </div>
             </div>

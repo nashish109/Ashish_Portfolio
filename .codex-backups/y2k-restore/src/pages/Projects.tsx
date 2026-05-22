@@ -2,11 +2,10 @@ import { ProjectCard } from "@/components/portfolio/ProjectCard";
 
 const Projects = () => {
   return (
-    <div className="py-12">
+    <div className="py-2">
       <section className="container mx-auto px-4 sm:px-6">
         <div className="text-center space-y-6">
-          <p className="retro-kicker">Executable Library</p>
-          <h2 className="retro-title text-3xl sm:text-4xl md:text-5xl">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">
             Projects <span className="text-cyan-400">Showcase</span>
           </h2>
           

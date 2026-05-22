@@ -18,8 +18,7 @@ export const Skills: React.FC<{ className?: string }> = ({ className = "" }) => 
     <div className={`space-y-8 ${className}`}>
       {/* Header */}
       <div className="text-center space-y-4">
-        <p className="retro-kicker">System Diagnostics</p>
-        <h3 className="retro-title text-3xl md:text-4xl">
+        <h3 className="text-3xl md:text-4xl font-bold text-white">
           Technologies & <span className="text-cyan-400">Tools</span>
         </h3>
         <p className="text-gray-400 max-w-2xl mx-auto">
@@ -28,20 +27,13 @@ export const Skills: React.FC<{ className?: string }> = ({ className = "" }) => 
       </div>
 
       {/* Technology Icons Grid - Better Arrangement */}
-      <div className="retro-window scan-panel mx-auto max-w-6xl">
-        <div className="p-4 pt-8 sm:p-6 sm:pt-10">
-          <div className="mb-6 grid gap-3 font-mono text-xs text-cyan-100 sm:grid-cols-3">
-            <div className="border border-cyan-300/45 bg-black p-3 shadow-[inset_1px_1px_0_rgba(255,255,255,0.12)]">SCAN: COMPLETE</div>
-            <div className="border border-emerald-300/45 bg-black p-3 shadow-[inset_1px_1px_0_rgba(255,255,255,0.12)]">MODULES: {technologyIcons.length}</div>
-            <div className="border border-violet-300/45 bg-black p-3 shadow-[inset_1px_1px_0_rgba(255,255,255,0.12)]">STATUS: PRODUCTION READY</div>
-          </div>
-          <div className="grid grid-cols-2 gap-4 sm:gap-5 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
-        {technologyIcons.map((tech, index) => (
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6 max-w-5xl mx-auto">
+        {technologyIcons.map((tech) => (
           <div
             key={tech.name}
-            className="group flex cursor-pointer flex-col items-center space-y-3 border border-cyan-300/25 bg-black p-3 shadow-[inset_1px_1px_0_rgba(255,255,255,0.1)] transition-all duration-300 hover:-translate-y-1 hover:border-cyan-300/70 hover:bg-cyan-300/10"
+            className="flex flex-col items-center space-y-3 group cursor-pointer transform hover:scale-105 transition-all duration-300 animate-float"
           >
-            <div className={`border border-white/20 bg-gradient-to-br ${tech.bgColor} p-6 shadow-[0_0_24px_rgba(255,255,255,0.08)] transition-all duration-300 group-hover:border-cyan-300/70 group-hover:shadow-[0_0_28px_rgba(34,211,238,0.28)]`}>
+            <div className={`p-6 rounded-2xl bg-gradient-to-br ${tech.bgColor} border border-white/20 shadow-[0_0_24px_rgba(255,255,255,0.08)] group-hover:border-cyan-300/70 group-hover:shadow-[0_0_28px_rgba(34,211,238,0.28)] transition-all duration-300`}>
               <img
                 src={tech.icon}
                 alt={tech.name}
@@ -51,13 +43,8 @@ export const Skills: React.FC<{ className?: string }> = ({ className = "" }) => 
             <span className="text-sm font-medium text-gray-300 text-center group-hover:text-cyan-400 transition-colors duration-300">
               {tech.name}
             </span>
-            <div className="h-2 w-full overflow-hidden border border-cyan-300/30 bg-black">
-              <div className="h-full bg-[repeating-linear-gradient(90deg,#67e8f9_0_6px,#22c55e_6px_10px)]" style={{ width: `${72 + (index % 4) * 7}%` }} />
-            </div>
           </div>
         ))}
-          </div>
-        </div>
       </div>
     </div>
   );
