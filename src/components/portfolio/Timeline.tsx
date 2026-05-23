@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import dtccLogo from "../../assets/company-logos/dtcc.webp";
 import aicteLogo from "../../assets/company-logos/AICTE-Logo-Vector.svg-.png";
+import nalcoLogo from "../../assets/company-logos/NALCO.png";
 
 interface TimelineItem {
   role: string;
@@ -11,6 +12,17 @@ interface TimelineItem {
 }
 
 const items: TimelineItem[] = [
+  {
+    role: "Vocational Trainee - NALCO",
+    org: "Damanjodi, Odisha",
+    period: "May 2026 - June 2026",
+    logo: nalcoLogo,
+    bullets: [
+      "Gained knowledge of Intra-Net systems for secure and efficient internal employee data flow.",
+      "Acquired hands-on exposure to industrial machinery and control room operations using Honeywell International automation systems.",
+      "Developed a predictive maintenance model to detect potential machine breakdowns and generate alerts using vibration data analysis.",
+    ],
+  },
   {
     role: "IT Intern - DTCC",
     org: "Chennai, Tamil Nadu",

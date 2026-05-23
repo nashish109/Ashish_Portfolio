@@ -55,6 +55,73 @@ const Certifications = () => {
               </div>
             </a>
 
+            {/* MongoDB Associate Database Administrator */}
+            <a href="https://www.credly.com/badges/c2699805-5bdf-467c-bf1c-9463b2dfdc7f/public_url" target="_blank" rel="noopener noreferrer" className="block">
+              <div className="retro-window h-full transition-all duration-300 hover:-translate-y-1 hover:border-cyan-300/50">
+                <div className="p-5 pt-8 sm:p-8 sm:pt-10">
+                <div className="text-center space-y-4">
+                  <img
+                    src="/badges/MongoDBA Certificate.png"
+                    alt="MongoDB Associate Database Administrator Certification"
+                    className="w-32 h-32 mx-auto object-contain"
+                  />
+                  <h3 className="text-xl font-bold text-white">MongoDB Associate Database
+Administrator</h3>
+                  <p className="text-gray-400 text-sm">
+                    Certified in MongoDB database administration and management
+                  </p>
+                  <Badge variant="secondary" className="bg-cyan-500/20 text-cyan-400 border-cyan-500/30">
+                    Database Administration
+                  </Badge>
+                </div>
+                </div>
+              </div>
+            </a>
+
+            {/* Oracle Cloud Infrastructure 2025 Certified Architect Associate */}
+            <a href="https://catalog-education.oracle.com/ords/certview/sharebadge?id=CC638976BD85DC1ACFE6669A3EEED0E8F6DB67500F5A78455281DC6F25E8EA86" target="_blank" rel="noopener noreferrer" className="block">
+              <div className="retro-window h-full transition-all duration-300 hover:-translate-y-1 hover:border-cyan-300/50">
+                <div className="p-5 pt-8 sm:p-8 sm:pt-10">
+                <div className="text-center space-y-4">
+                  <img
+                    src="/badges/Oracle Badge.jpg"
+                    alt="Oracle Cloud Infrastructure 2025 Certified Architect Associate Certification"
+                    className="w-38 h-38 mx-auto object-contain"
+                  />
+                  <h3 className="text-xl font-bold text-white">Oracle Cloud Infrastructure 2025 Certified Architect Associate</h3>
+                  <p className="text-gray-400 text-sm">
+                    Certified in Oracle Cloud Infrastructure architecture and deployment
+                  </p>
+                  <Badge variant="secondary" className="bg-cyan-500/20 text-cyan-400 border-cyan-500/30">
+                    Cloud Architecture
+                  </Badge>
+                </div>
+                </div>
+              </div>
+            </a>
+
+            {/* Automation Anywhere Certified Essentials RPA Professional */}
+            <a href="https://certificates.automationanywhere.com/8d9c85bb-33b2-47f1-b0da-203541090fb5#acc.x0Xnuds3" target="_blank" rel="noopener noreferrer" className="block">
+              <div className="retro-window h-full transition-all duration-300 hover:-translate-y-1 hover:border-cyan-300/50">
+                <div className="p-5 pt-8 sm:p-8 sm:pt-10">
+                <div className="text-center space-y-4">
+                  <img
+                    src="/badges/RPA logo.jpg"
+                    alt="Automation Anywhere Certified Essentials RPA Professional Certification"
+                    className="w-32 h-32 mx-auto object-contain"
+                  />
+                  <h3 className="text-xl font-bold text-white">Automation Anywhere Certified Essentials RPA Professional</h3>
+                  <p className="text-gray-400 text-sm">
+                    Certified in Automation Anywhere RPA tools and techniques
+                  </p>
+                  <Badge variant="secondary" className="bg-cyan-500/20 text-cyan-400 border-cyan-500/30">
+                    Robotic Process Automation
+                  </Badge>
+                </div>
+                </div>
+              </div>
+            </a>
+
             {/* Additional Certifications Placeholder */}
             <div className="retro-window transition-all duration-300 hover:-translate-y-1 hover:border-cyan-300/50">
               <div className="p-5 pt-8 sm:p-8 sm:pt-10">
