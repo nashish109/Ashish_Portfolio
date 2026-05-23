@@ -73,8 +73,8 @@ export const About: React.FC<{ className?: string }> = ({ className = "" }) => {
   }, []);
 
   return (
-    <section id="about" className={`container scroll-mt-32 px-4 py-16 sm:px-6 sm:py-20 ${className}`}>
-      <div className="mb-10 space-y-6 text-center">
+    <section id="about" className={`container scroll-mt-32 px-4 py-10 sm:px-6 sm:py-0 ${className}`}>
+      <div className="mb-10 space-y-5 text-center">
         <div className="inline-flex items-center justify-center gap-2 text-cyan-300">
           <span className="retro-kicker">Inbox / Profile Mail</span>
         </div>

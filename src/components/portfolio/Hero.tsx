@@ -183,7 +183,7 @@ export const Hero: React.FC<HeroProps> = ({ className = "" }) => {
                     aria-label="Enter system and scroll to about section"
                     className="retro-button group flex items-center gap-3 px-4 py-2 font-mono text-[0.65rem] uppercase tracking-[0.18em]"
                   >
-                    ENTER SYSTEM
+                    SYSTEM DETAILS
                     <ArrowDown className="h-4 w-4 animate-bounce text-cyan-200" />
                   </button>
                 </div>
