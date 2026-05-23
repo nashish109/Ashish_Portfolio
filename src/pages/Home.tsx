@@ -1,10 +1,7 @@
 import { Hero } from "@/components/portfolio/Hero";
 import { About } from "@/components/portfolio/About";
 import { Skills } from "@/components/portfolio/Skills";
-import { Timeline } from "@/components/portfolio/Timeline";
-import { ProjectCard } from "@/components/portfolio/ProjectCard";
-import { Contact } from "@/components/portfolio/Contact";
-import { ArrowDown, Rocket, Target, Code2, Briefcase } from "lucide-react";
+import { Rocket, Target, Code2, FolderOpen, Mail, Cpu, Monitor, Database, TerminalSquare } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -12,33 +9,17 @@ const Home = () => {
   const [visibleItems, setVisibleItems] = useState<boolean[]>([]);
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  const featuredProjects = [
-    {
-      title: "Movie Box Office Predictor",
-      subtitle: "ML-Powered Analytics Dashboard",
-      tech: ["Power BI", "Python", "Machine Learning"],
-      problem: "Need for accurate box office predictions",
-      solution: "85% accuracy ML model with interactive visualizations",
-      codeUrl: "https://github.com/nashish109/movie-predictor",
-      demoUrl: "https://movie-predictor-demo.vercel.app",
-      image: "/project-images/movie-predictor.svg"
-    },
-    {
-      title: "Event Management System",
-      subtitle: "Enterprise Microservices Platform",
-      tech: ["Spring Boot", "React", "Docker"],
-      problem: "Complex event scheduling & tracking",
-      solution: "10k+ daily users with real-time analytics",
-      codeUrl: "https://github.com/nashish109/event-sys",
-      demoUrl: "https://event-sys-demo.com",
-      image: "/project-images/event-system.svg"
-    }
-  ];
-
   const stats = [
     { icon: Rocket, value: "2+", label: "Years Experience" },
     { icon: Target, value: "10+", label: "Projects Completed" },
     { icon: Code2, value: "15+", label: "Technologies" }
+  ];
+
+  const quickLaunch = [
+    { icon: FolderOpen, label: "Projects", path: "/portfolio/projects", note: "software archive" },
+    { icon: Database, label: "Experience", path: "/portfolio/experience", note: "work logs" },
+    { icon: Monitor, label: "Certifications", path: "/portfolio/certifications", note: "verified badges" },
+    { icon: Mail, label: "Contact", path: "/portfolio/contact", note: "secure message" },
   ];
 
   useEffect(() => {
@@ -69,12 +50,79 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="min-h-screen pt-16">
+    <div className="min-h-screen">
       {/* Hero Section */}
       <Hero />
+
+      <section className="px-4 pb-10 sm:px-6 lg:pb-16">
+        <div className="container mx-auto">
+          <div className="web-directory">
+            <div className="web-directory-title flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+              <span>ASHISH_NET / Desktop Command Center</span>
+              <span className="text-emerald-300">visitor_session: active</span>
+            </div>
+            <div className="grid gap-0 lg:grid-cols-[0.92fr_1.08fr]">
+              <div className="border-b-2 border-cyan-300/35 p-4 sm:p-6 lg:border-b-0 lg:border-r-2">
+                <div className="mb-4 flex items-center gap-3 font-mono text-sm uppercase tracking-[0.16em] text-cyan-100">
+                  <TerminalSquare className="h-5 w-5 text-emerald-300" />
+                  Web Directory
+                </div>
+                <div className="grid gap-3 sm:grid-cols-2">
+                  {quickLaunch.map((item) => {
+                    const Icon = item.icon;
+                    return (
+                      <Link key={item.label} to={item.path} className="desktop-shortcut">
+                        <Icon className="h-8 w-8 text-cyan-200" />
+                        <span>{item.label}</span>
+                        <span className="text-[0.62rem] text-slate-500">{item.note}</span>
+                      </Link>
+                    );
+                  })}
+                </div>
+              </div>
+
+              <div className="p-4 sm:p-6">
+                <div className="mb-4 flex items-center gap-3 font-mono text-sm uppercase tracking-[0.16em] text-cyan-100">
+                  <Cpu className="h-5 w-5 text-emerald-300" />
+                  Live System Log
+                </div>
+                <div className="mb-4 border border-cyan-300/35 bg-black p-4 font-mono text-sm leading-7 text-cyan-100 shadow-[inset_1px_1px_0_rgba(255,255,255,0.12)]">
+                  <p><span className="text-emerald-300">[00:01]</span> Mounted profile archive...</p>
+                  <p><span className="text-emerald-300">[00:02]</span> Loaded analytics, cloud, and full-stack modules...</p>
+                  <p><span className="text-emerald-300">[00:03]</span> Recruiter view optimized for desktop, tablet, and mobile...</p>
+                  <p><span className="text-emerald-300">[OK]</span> Portfolio workstation ready.</p>
+                </div>
+                <div className="grid gap-3 md:grid-cols-3">
+                  {stats.map((stat, index) => {
+                    const Icon = stat.icon;
+                    return (
+                      <div key={stat.label} className="border border-cyan-300/30 bg-black p-3 font-mono shadow-[inset_1px_1px_0_rgba(255,255,255,0.12)]">
+                        <div className="mb-2 flex items-center justify-between gap-3">
+                          <span className="flex items-center gap-2 text-cyan-100">
+                            <Icon className="h-4 w-4 text-emerald-300" />
+                            {stat.label}
+                          </span>
+                          <span className="text-lg font-black text-white">{stat.value}</span>
+                        </div>
+                        <div className="h-2 border border-cyan-300/30 bg-black">
+                          <div
+                            className="h-full bg-[repeating-linear-gradient(90deg,#22c55e_0_8px,#67e8f9_8px_14px)]"
+                            style={{ width: `${76 + index * 9}%` }}
+                          />
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
       
 
       {/* About Section */}
+      <div className="ninety-divider">directory://profile/about-me</div>
       <div
         ref={(el) => (itemRefs.current[8] = el)}
         className={`transition-all duration-1000 ${
@@ -87,7 +135,8 @@ const Home = () => {
       </div>
       
       {/* Skills Section */}
-      <section className="py-16 sm:py-20 lg:py-24">
+      <div className="ninety-divider">diagnostics://technologies-tools</div>
+      <section className="py-12 sm:py-16 lg:py-20">
         <div
           ref={(el) => (itemRefs.current[0] = el)}
           className={`container mx-auto px-4 sm:px-6 transition-all duration-1000 ${
@@ -100,124 +149,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Experience Section */}
-      <section className="py-16 sm:py-20 lg:py-24">
-        <div className="container mx-auto px-4 sm:px-6">
-          <div
-            ref={(el) => (itemRefs.current[1] = el)}
-            className={`text-center space-y-6 mb-10 sm:mb-16 transition-all duration-1000 ${
-              visibleItems[1]
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-8"
-            }`}
-          >
-            <div className="flex items-center justify-center gap-2 text-cyan-400 mb-4">
-              <Briefcase className="h-5 w-5" />
-              <span className="text-sm font-medium">Professional Journey</span>
-              <Briefcase className="h-5 w-5" />
-            </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">
-              Work <span className="text-cyan-400">Experience</span>
-            </h2>
-            <p
-              ref={(el) => (itemRefs.current[3] = el)}
-              className={`text-gray-400 text-base sm:text-lg max-w-3xl mx-auto transition-all duration-1000 ${
-                visibleItems[3]
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-8"
-              }`}
-            >
-              A track record of delivering exceptional results and driving innovation
-            </p>
-          </div>
-          <Timeline />
-        </div>
-      </section>
-
-      {/* Featured Projects */}
-      <section className="py-16 sm:py-20 lg:py-24">
-        <div className="container mx-auto px-4 sm:px-6">
-          <div
-            ref={(el) => (itemRefs.current[2] = el)}
-            className={`text-center space-y-6 mb-10 sm:mb-16 transition-all duration-1000 ${
-              visibleItems[2]
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-8"
-            }`}
-          >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">
-              Featured <span className="text-cyan-400">Projects</span>
-            </h2>
-            <p
-              ref={(el) => (itemRefs.current[4] = el)}
-              className={`text-gray-400 text-base sm:text-lg max-w-3xl mx-auto transition-all duration-1000 ${
-                visibleItems[4]
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-8"
-              }`}
-            >
-              Showcasing innovative solutions and technical expertise
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
-            {featuredProjects.map((project, index) => (
-              <div
-                key={project.title}
-                ref={(el) => (itemRefs.current[index + stats.length] = el)}
-                className={`transition-all duration-1000 ${
-                  visibleItems[index + stats.length]
-                    ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-8"
-                }`}
-              >
-                <ProjectCard {...project} />
-              </div>
-            ))}
-          </div>
-          
-          <div
-            ref={(el) => (itemRefs.current[7] = el)}
-            className={`text-center mt-12 transition-all duration-1000 ${
-              visibleItems[7]
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-8"
-            }`}
-          >
-            <Link
-              to="/portfolio/projects"
-              onClick={() => {
-                const scrollY = window.scrollY;
-
-                sessionStorage.setItem("portfolio-scroll:/portfolio", String(scrollY));
-                window.history.replaceState(
-                  {
-                    ...window.history.state,
-                    portfolioScrollY: scrollY,
-                  },
-                  ""
-                );
-              }}
-              className="inline-flex w-full sm:w-auto items-center justify-center gap-2 bg-cyan-600 hover:bg-cyan-500 text-white px-6 sm:px-8 py-3 rounded-xl font-semibold"
-            >
-              View All Projects
-              <ArrowDown className="h-5 w-5" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Contact Section */}
-      <div
-        ref={(el) => (itemRefs.current[6] = el)}
-        className={`transition-all duration-1000 ${
-          visibleItems[6]
-            ? "opacity-100 translate-y-0"
-            : "opacity-0 translate-y-8"
-        }`}
-      >
-        <Contact />
-      </div>
     </div>
   );
 };

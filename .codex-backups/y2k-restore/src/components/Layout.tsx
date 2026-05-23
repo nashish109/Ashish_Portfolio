@@ -36,13 +36,13 @@ const Layout = () => {
   };
 
   return (
-    <div className="retro-page min-h-screen bg-black text-slate-100">
+    <div className="min-h-screen bg-black">
       <button
         type="button"
         onClick={() => setIsNavOpen((open) => !open)}
         aria-label={isNavOpen ? "Close navigation" : "Open navigation"}
         aria-expanded={isNavOpen}
-        className="retro-button fixed left-4 top-4 z-[60] inline-flex h-11 w-11 items-center justify-center p-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300"
+        className="fixed left-4 top-4 z-[60] inline-flex h-11 w-11 items-center justify-center rounded-lg border border-white/10 bg-black/70 text-gray-200 shadow-lg backdrop-blur-sm transition-colors hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
       >
         {isNavOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
       </button>
@@ -52,24 +52,15 @@ const Layout = () => {
           type="button"
           aria-label="Close navigation overlay"
           onClick={() => setIsNavOpen(false)}
-          className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm"
+          className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm"
         />
       )}
 
       <aside
-        className={`fixed left-0 top-0 z-50 h-screen w-72 border-r-2 border-cyan-300/50 bg-black px-5 pb-6 pt-24 shadow-[8px_0_0_rgba(0,255,204,0.14)] transition-transform duration-300 ${
+        className={`fixed left-0 top-0 z-50 h-screen w-72 border-r border-white/10 bg-black/90 px-5 pb-6 pt-20 shadow-2xl backdrop-blur-xl transition-transform duration-300 ${
           isNavOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        <div className="absolute left-5 right-5 top-5 border-2 border-cyan-300/50 bg-black px-4 py-3 font-mono text-xs text-cyan-100 shadow-[inset_2px_2px_0_rgba(255,255,255,0.14)]">
-          <div className="flex items-center justify-between">
-            <span>PORTFOLIO_OS.EXE</span>
-            <span className="flex items-center gap-2 text-emerald-300">
-              <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.9)]" />
-              ONLINE
-            </span>
-          </div>
-        </div>
         <nav className="flex h-full flex-col gap-2" aria-label="Portfolio navigation">
           {sections.map((section) => {
             const Icon = section.icon;
@@ -80,10 +71,10 @@ const Layout = () => {
                 key={section.id}
                 variant="ghost"
                 onClick={() => handleNavigation(section.path)}
-                className={`w-full justify-start gap-3 rounded-lg border px-4 py-6 font-mono text-xs uppercase tracking-[0.16em] transition-all duration-200 ${
+                className={`w-full justify-start gap-3 rounded-lg px-4 py-6 text-sm font-medium transition-all duration-200 ${
                   isActive
-                    ? "border-cyan-300/50 bg-cyan-300/12 text-cyan-100 shadow-[0_0_20px_rgba(34,211,238,0.14)]"
-                    : "border-cyan-300/20 text-gray-300 hover:border-cyan-300/50 hover:bg-cyan-300/10 hover:text-white"
+                    ? "bg-cyan-400/10 text-cyan-400"
+                    : "text-gray-300 hover:bg-white/5 hover:text-white"
                 }`}
               >
                 <Icon className="h-5 w-5" />
@@ -95,9 +86,9 @@ const Layout = () => {
       </aside>
 
       {/* Main content keeps its existing spacing so page layouts stay stable. */}
-      <div className="relative z-10 pt-2">
+      <div className="pt-2 relative z-10">
         <main className="flex-1">
-          <div className="relative z-10 pt-2">
+          <div className="pt-2 relative z-10">
             <Outlet key={location.pathname} />
           </div>
         </main>
