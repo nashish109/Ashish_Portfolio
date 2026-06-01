@@ -1,106 +1,142 @@
 import { useEffect, useState } from "react";
-import { Button } from "@/components/ui/button";
+import { useLocation, useNavigate } from "react-router-dom";
+import { Award, Briefcase, FolderOpen, Home, Mail, Menu, Microscope, Moon, Sun, User, X } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useLocation } from "react-router-dom";
-import { useSmoothNavigate } from "@/hooks/useSmoothNavigate";
-import { Award, Briefcase, Code, FolderOpen, Home, Mail, Menu, Sparkles, User, Users, X } from "lucide-react";
 
 const sections = [
-  { id: "home", label: "Home", path: "/portfolio", icon: Home },
-  { id: "about", label: "About", path: "/portfolio/about", icon: User },
-  { id: "experience", label: "Experience", path: "/portfolio/experience", icon: Briefcase },
-  { id: "projects", label: "Projects", path: "/portfolio/projects", icon: FolderOpen },
-  { id: "certs", label: "Certifications", path: "/portfolio/certifications", icon: Award },
-  { id: "leadership", label: "Leadership", path: "/portfolio/leadership", icon: Users },
-  { id: "playground", label: "Playground", path: "/portfolio/playground", icon: Code },
-  { id: "contact", label: "Contact", path: "/portfolio/contact", icon: Mail },
+  { id: "home", label: "Home", icon: Home },
+  { id: "about", label: "About", icon: User },
+  { id: "experience", label: "Experience", icon: Briefcase },
+  { id: "research", label: "Research", icon: Microscope },
+  { id: "certifications", label: "Certifications", icon: Award },
+  { id: "projects", label: "Projects", icon: FolderOpen },
+  { id: "contact", label: "Contact", icon: Mail },
 ];
 
 export const Navbar = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const [active, setActive] = useState("home");
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const smoothNavigate = useSmoothNavigate();
+  const [open, setOpen] = useState(false);
+  const [theme, setTheme] = useState<"light" | "dark">("light");
+
+  const getHeaderOffset = () => (window.matchMedia("(max-width: 700px)").matches ? 64 : 72);
 
   useEffect(() => {
-    const currentSection = sections.find((section) => section.path === location.pathname);
-    if (currentSection) setActive(currentSection.id);
+    const storedTheme = window.localStorage.getItem("portfolio-theme");
+    const initialTheme = storedTheme === "dark" ? "dark" : "light";
+    setTheme(initialTheme);
+    document.documentElement.classList.toggle("dark-theme", initialTheme === "dark");
+  }, []);
+
+  const toggleTheme = () => {
+    const nextTheme = theme === "dark" ? "light" : "dark";
+    setTheme(nextTheme);
+    document.documentElement.classList.toggle("dark-theme", nextTheme === "dark");
+    window.localStorage.setItem("portfolio-theme", nextTheme);
+  };
+
+  useEffect(() => {
+    const onScroll = () => {
+      const visible = sections
+        .map((section) => {
+          const element = document.getElementById(section.id);
+          if (!element) return null;
+          return { id: section.id, top: Math.abs(element.getBoundingClientRect().top - getHeaderOffset()) };
+        })
+        .filter(Boolean) as Array<{ id: string; top: number }>;
+
+      visible.sort((a, b) => a.top - b.top);
+      if (visible[0]) setActive(visible[0].id);
+    };
+
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, [location.pathname]);
 
-  const handleNavigation = (path: string, elementId?: string) => {
-    smoothNavigate(path, elementId);
-    setIsMobileMenuOpen(false);
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
+  const goToSection = (id: string) => {
+    setOpen(false);
+
+    const scroll = () => {
+      const element = document.getElementById(id);
+      if (!element) return;
+      window.scrollTo({ top: element.offsetTop - getHeaderOffset(), behavior: "smooth" });
+    };
+    if (location.pathname !== "/portfolio") {
+      navigate("/portfolio");
+      window.setTimeout(scroll, 80);
+      return;
+    }
+
+    scroll();
   };
 
   return (
     <>
-      <header className="retro-toolbar fixed left-2 right-2 top-2 z-50 rounded-lg md:left-4 md:right-4">
-        <div className="container mx-auto px-3">
-          <nav className="flex min-h-14 items-center justify-between gap-3 py-2">
-            <button onClick={() => handleNavigation("/portfolio")} className="chrome-chip flex items-center gap-2 rounded px-3 py-2 font-mono text-xs uppercase tracking-[0.16em]">
-              <span className="h-2 w-2 rounded-full bg-emerald-300 shadow-[0_0_10px_rgba(52,211,153,0.9)]" />
-              Ashish.OS
-            </button>
+      <div className="floating-controls" aria-label="Portfolio controls">
+        <button type="button" onClick={() => setOpen(true)} className="sidebar-toggle" aria-label="Open navigation" aria-expanded={open}>
+          <Menu className="h-5 w-5" />
+        </button>
 
-            <div className="hidden items-center gap-1 overflow-x-auto md:flex">
-              {sections.map((s) => {
-                const Icon = s.icon;
-                const isActive = active === s.id;
+        <button type="button" onClick={toggleTheme} className="theme-toggle" aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}>
+          {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+        </button>
+      </div>
 
-                return (
-                  <button
-                    key={s.id}
-                    onClick={() => handleNavigation(s.path, s.id === "about" ? "about" : undefined)}
-                    className={cn(
-                      "glitch-hover inline-flex shrink-0 items-center gap-2 rounded border px-3 py-2 font-mono text-[0.68rem] uppercase tracking-[0.12em] transition-all",
-                      isActive
-                        ? "border-cyan-200/60 bg-cyan-200/15 text-white shadow-[0_0_18px_rgba(34,211,238,0.2)]"
-                        : "border-white/10 bg-black/25 text-slate-300 hover:border-cyan-200/45 hover:bg-cyan-300/10 hover:text-cyan-50"
-                    )}
-                  >
-                    <Icon className="h-3.5 w-3.5" />
-                    {s.label}
-                  </button>
-                );
-              })}
-            </div>
+      <div
+        className={cn(
+          "fixed inset-0 z-[60] bg-slate-950/30 backdrop-blur-[2px] transition-opacity duration-300",
+          open ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0",
+        )}
+        onClick={() => setOpen(false)}
+        aria-hidden="true"
+      />
 
-            <Button onClick={() => handleNavigation("/portfolio/contact")} className="retro-button hidden md:inline-flex">
-              <Sparkles className="mr-2 h-4 w-4" />
-              Hire Me
-            </Button>
-
-            <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="retro-button inline-flex h-10 w-10 items-center justify-center rounded md:hidden">
-              {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            </button>
-          </nav>
+      <aside
+        className={cn(
+          "nav-drawer fixed bottom-0 left-0 top-0 z-[70] flex w-[min(88vw,360px)] flex-col border-r transition-transform duration-300 ease-out",
+          open ? "translate-x-0" : "-translate-x-full",
+        )}
+        aria-label="Portfolio navigation"
+      >
+        <div className="nav-header flex items-center justify-between border-b p-5">
+          <button onClick={() => goToSection("home")} className="text-left" type="button">
+            <span className="nav-name block text-2xl font-extrabold tracking-normal">N. Ashish</span>
+            <span className="nav-subtitle mt-1 block text-xs font-bold uppercase tracking-[0.12em]">Portfolio</span>
+          </button>
+          <button type="button" onClick={() => setOpen(false)} className="nav-close grid h-10 w-10 place-items-center rounded-full border" aria-label="Close navigation">
+            <X className="h-5 w-5" />
+          </button>
         </div>
-      </header>
 
-      {isMobileMenuOpen && (
-        <div className="fixed inset-x-2 top-20 z-40 rounded-lg border border-cyan-300/25 bg-black/95 p-4 shadow-[0_0_34px_rgba(34,211,238,0.18)] backdrop-blur-xl md:hidden">
-          <div className="space-y-2">
-            {sections.map((s) => {
-              const Icon = s.icon;
-              const isActive = active === s.id;
-
-              return (
-                <button
-                  key={s.id}
-                  onClick={() => handleNavigation(s.path, s.id === "about" ? "about" : undefined)}
-                  className={cn(
-                    "flex w-full items-center gap-3 rounded border px-4 py-3 text-left font-mono text-xs uppercase tracking-[0.14em] transition-all",
-                    isActive ? "border-cyan-200/60 bg-cyan-200/15 text-white" : "border-white/10 bg-black/30 text-slate-300"
-                  )}
-                >
-                  <Icon className="h-4 w-4" />
-                  {s.label}
-                </button>
-              );
-            })}
-          </div>
-        </div>
-      )}
+        <nav className="flex-1 overflow-y-auto p-3">
+          {sections.map((section) => {
+            const Icon = section.icon;
+            return (
+              <button
+                key={section.id}
+                type="button"
+                onClick={() => goToSection(section.id)}
+                className={cn(
+                  "nav-link flex w-full items-center gap-3 rounded-lg px-4 py-3 text-left text-sm font-bold transition-colors",
+                  active === section.id && "active",
+                )}
+              >
+                <Icon className="h-4 w-4 shrink-0" />
+                {section.label}
+              </button>
+            );
+          })}
+        </nav>
+      </aside>
     </>
   );
 };

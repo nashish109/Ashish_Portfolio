@@ -1,17 +1,8 @@
-import { useEffect, useRef, useState } from "react";
 import dtccLogo from "../../assets/company-logos/dtcc.webp";
 import aicteLogo from "../../assets/company-logos/AICTE-Logo-Vector.svg-.png";
 import nalcoLogo from "../../assets/company-logos/NALCO.png";
 
-interface TimelineItem {
-  role: string;
-  org: string;
-  period: string;
-  bullets: string[];
-  logo?: string;
-}
-
-const items: TimelineItem[] = [
+const items = [
   {
     role: "Vocational Trainee - NALCO",
     org: "Damanjodi, Odisha",
@@ -29,9 +20,9 @@ const items: TimelineItem[] = [
     period: "May 2025 - July 2025",
     logo: dtccLogo,
     bullets: [
-      "Contributed to a Trade Reconciliation project focusing on frontend development and database design.",
-      "Designed and managed relational database schemas to enable efficient data handling and reconciliation workflows.",
-      "Utilized Angular, TypeScript, and MySQL to build scalable and reliable solutions.",
+      "Contributed to a trade reconciliation project across frontend implementation and database design.",
+      "Designed relational schemas for efficient data handling in reconciliation workflows.",
+      "Used Angular, TypeScript, and MySQL to support scalable enterprise application delivery.",
     ],
   },
   {
@@ -40,81 +31,48 @@ const items: TimelineItem[] = [
     period: "June 2024 - August 2024",
     logo: aicteLogo,
     bullets: [
-      "Developed and maintained data pipelines using Python and SQL.",
-      "Created and managed databases for data storage and retrieval.",
-      "Worked with data warehousing solutions to store and analyze large datasets.",
+      "Developed and maintained Python and SQL data pipelines.",
+      "Created databases for structured storage, retrieval, and analysis.",
+      "Worked with warehousing concepts for larger analytical datasets.",
     ],
   },
 ];
 
 export const Timeline = () => {
-  const [visibleItems, setVisibleItems] = useState<boolean[]>([]);
-  const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const index = itemRefs.current.findIndex((ref) => ref === entry.target);
-          if (index !== -1 && entry.isIntersecting) {
-            setVisibleItems((prev) => {
-              const newItems = [...prev];
-              newItems[index] = true;
-              return newItems;
-            });
-          }
-        });
-      },
-      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
-    );
-
-    itemRefs.current.forEach((ref) => {
-      if (ref) observer.observe(ref);
-    });
-
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <div className="mx-auto max-w-4xl">
+    <div className="mx-auto max-w-5xl">
       <div className="relative">
-        <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-gradient-to-b from-emerald-300 via-cyan-300 to-transparent shadow-[0_0_18px_rgba(34,211,238,0.35)] sm:left-8" />
+        <div className="absolute bottom-0 left-4 top-0 w-px bg-gradient-to-b from-cyan-200/0 via-cyan-200/35 to-cyan-200/0 sm:left-8" />
 
-        <div className="space-y-12">
-          {items.map((item, index) => (
-            <div key={item.role} className="relative flex items-start" ref={(el) => (itemRefs.current[index] = el)}>
-              <div className="absolute left-2 top-2 z-10 h-4 w-4 border-4 border-black bg-emerald-300 shadow-[0_0_18px_rgba(52,211,153,0.8)] sm:left-6" />
-
-              <div className="ml-8 min-w-0 flex-1 sm:ml-16">
-                <div className={`retro-window transition-all duration-1000 ${visibleItems[index] ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}`}>
-                  <div className="p-4 pt-8 sm:p-6 sm:pt-10">
-                    <div className="mb-5 border border-cyan-300/45 bg-black px-3 py-2 text-left font-mono text-xs text-cyan-100 shadow-[inset_1px_1px_0_rgba(255,255,255,0.12)]">
-                      LOG_ENTRY_{String(index + 1).padStart(2, "0")} / {item.period}
-                    </div>
-
-                    <div className="mb-6 flex flex-col items-start gap-4 sm:flex-row">
-                      {item.logo && (
-                        <img src={item.logo} alt={`${item.org} logo`} className="h-12 w-16 border border-cyan-300/30 object-cover" />
-                      )}
-                      <div className="text-left">
-                        <h3 className="mb-1 text-xl font-semibold text-white">{item.role}</h3>
-                        <p className="text-sm text-cyan-300">{item.org}</p>
-                        <p className="text-sm text-slate-400">{item.period}</p>
+        <div className="space-y-6 sm:space-y-8">
+          {items.map((item) => (
+            <article key={item.role} className="relative pl-10 sm:pl-20">
+              <div className="absolute left-[0.7rem] top-7 h-3 w-3 border border-current/40 bg-current sm:left-[1.7rem]" />
+              <div className="premium-card hermes-hover">
+                <div className="premium-inner p-5 sm:p-7">
+                  <div className="flex flex-col gap-5 sm:flex-row sm:items-start">
+                    <img src={item.logo} alt={`${item.org} logo`} className="h-14 w-20 rounded-md border border-white/10 bg-white object-contain p-1" />
+                    <div className="min-w-0 flex-1 text-left">
+                      <div className="flex flex-col gap-2 md:flex-row md:items-start md:justify-between">
+                        <div>
+                          <h3 className="mt-2 text-xl font-semibold text-white">{item.role}</h3>
+                          <p className="mt-1 text-sm tracking-normal opacity-60" style={{ textTransform: "none" }}>{item.org}</p>
+                        </div>
+                        <span className="premium-chip w-fit">{item.period}</span>
                       </div>
+                      <ul className="mt-5 grid gap-3 text-sm leading-7 opacity-70">
+                        {item.bullets.map((bullet) => (
+                          <li key={bullet} className="flex gap-3">
+                            <span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-200" />
+                            <span>{bullet}</span>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
-
-                    <ul className="ml-2 space-y-3 text-left text-sm text-gray-300">
-                      {item.bullets.map((bullet) => (
-                        <li key={bullet} className="flex items-start gap-3">
-                          <span className="mt-1 text-emerald-300">&gt;</span>
-                          <span className="flex-1 leading-relaxed">{bullet}</span>
-                        </li>
-                      ))}
-                    </ul>
                   </div>
                 </div>
               </div>
-            </div>
+            </article>
           ))}
         </div>
       </div>
