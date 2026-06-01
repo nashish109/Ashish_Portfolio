@@ -7,12 +7,6 @@ import Layout from "./components/Layout";
 import ScrollToTop from "./components/ScrollToTop";
 import Welcome from "./pages/Welcome";
 import Home from "./pages/Home";
-import About from "./pages/About";
-import Experience from "./pages/Experience";
-import Projects from "./pages/Projects";
-import Certifications from "./pages/Certifications";
-import Leadership from "./pages/Leadership";
-import ContactPage from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -31,12 +25,12 @@ const App = () => (
           {/* Main portfolio routes */}
           <Route path="/portfolio" element={<Layout />}>
             <Route index element={<Home />} />
-            <Route path="about" element={<About />} />
-            <Route path="experience" element={<Experience />} />
-            <Route path="projects" element={<Projects />} />
-            <Route path="certifications" element={<Certifications />} />
-            <Route path="leadership" element={<Leadership />} />
-            <Route path="contact" element={<ContactPage />} />
+            <Route path="about" element={<Home />} />
+            <Route path="experience" element={<Home />} />
+            <Route path="projects" element={<Home />} />
+            <Route path="certifications" element={<Home />} />
+            <Route path="research" element={<Home />} />
+            <Route path="contact" element={<Home />} />
           </Route>
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

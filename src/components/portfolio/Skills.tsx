@@ -1,64 +1,61 @@
-const technologyIcons = [
-  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg", name: "React", color: "text-blue-400", bgColor: "from-blue-400/35 to-cyan-300/15" },
-  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg", name: "Python", color: "text-green-400", bgColor: "from-green-400/35 to-yellow-300/15" },
-  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg", name: "Django", color: "text-emerald-400", bgColor: "from-emerald-400/35 to-green-300/15" },
-  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg", name: "SQL", color: "text-cyan-400", bgColor: "from-cyan-400/35 to-blue-300/15" },
-  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg", name: "AWS", color: "text-purple-400", bgColor: "from-orange-300/35 to-purple-300/15" },
-  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg", name: "C++", color: "text-blue-500", bgColor: "from-blue-400/35 to-indigo-300/15" },
-  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg", name: "Azure", color: "text-yellow-400", bgColor: "from-sky-400/35 to-blue-300/15" },
-  { icon: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/tableau.svg", name: "Tableau", color: "text-blue-600", bgColor: "from-blue-300/35 to-red-300/15" },
-  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg", name: "Git", color: "text-red-400", bgColor: "from-red-400/35 to-orange-300/15" },
-  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/r/r-original.svg", name: "R", color: "text-blue-400", bgColor: "from-sky-400/35 to-blue-300/15" },
-  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg", name: "VS Code", color: "text-blue-400", bgColor: "from-blue-400/35 to-sky-300/15" },
-  { icon: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/powerbi.svg", name: "Power BI", color: "text-yellow-400", bgColor: "from-yellow-300/40 to-amber-300/15" }
+const technologies = [
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg", name: "React", category: "Frontend" },
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg", name: "Python", category: "AI/ML" },
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg", name: "Django", category: "Backend" },
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg", name: "SQL", category: "Databases" },
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg", name: "AWS", category: "Cloud" },
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg", name: "C++", category: "Engineering" },
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg", name: "Azure", category: "Cloud" },
+  { icon: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/tableau.svg", name: "Tableau", category: "Analytics" },
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg", name: "Git", category: "Tools" },
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/r/r-original.svg", name: "R", category: "AI/ML" },
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg", name: "VS Code", category: "Tools" },
+  { icon: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/powerbi.svg", name: "Power BI", category: "Analytics" },
 ];
 
 export const Skills: React.FC<{ className?: string }> = ({ className = "" }) => {
   return (
-    <div className={`space-y-8 ${className}`}>
-      {/* Header */}
-      <div className="text-center space-y-4">
-        <p className="retro-kicker">System Diagnostics</p>
-        <h3 className="retro-title text-3xl md:text-4xl">
-          Technologies & <span className="text-cyan-400">Tools</span>
-        </h3>
-        <p className="text-gray-400 max-w-2xl mx-auto">
-          A collection of technologies and tools I work with
-        </p>
-      </div>
+    <section id="skills" className={`section-block ${className}`}>
+      <div className="section-wrap">
+        <div className="hermes-grid">
+          <div className="hermes-cell col-span-full text-center">
+            <h2 className="section-title mt-5">Technologies<br />and Tools</h2>
+          </div>
+          <div className="hermes-cell col-span-full text-center">
+            <p className="mx-auto max-w-[640px] text-[1.0625rem] leading-relaxed tracking-normal opacity-60" style={{ textTransform: "none" }}>
+              A collection of technologies and tools I work with.
+            </p>
+          </div>
 
-      {/* Technology Icons Grid - Better Arrangement */}
-      <div className="retro-window scan-panel mx-auto max-w-6xl">
-        <div className="p-4 pt-8 sm:p-6 sm:pt-10">
-          <div className="mb-6 grid gap-3 font-mono text-xs text-cyan-100 sm:grid-cols-3">
-            <div className="border border-cyan-300/45 bg-black p-3 shadow-[inset_1px_1px_0_rgba(255,255,255,0.12)]">SCAN: COMPLETE</div>
-            <div className="border border-emerald-300/45 bg-black p-3 shadow-[inset_1px_1px_0_rgba(255,255,255,0.12)]">MODULES: {technologyIcons.length}</div>
-            <div className="border border-violet-300/45 bg-black p-3 shadow-[inset_1px_1px_0_rgba(255,255,255,0.12)]">STATUS: PRODUCTION READY</div>
-          </div>
-          <div className="grid grid-cols-2 gap-4 sm:gap-5 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
-        {technologyIcons.map((tech, index) => (
-          <div
-            key={tech.name}
-            className="group flex cursor-pointer flex-col items-center space-y-3 border border-cyan-300/25 bg-black p-3 shadow-[inset_1px_1px_0_rgba(255,255,255,0.1)] transition-all duration-300 hover:-translate-y-1 hover:border-cyan-300/70 hover:bg-cyan-300/10"
-          >
-            <div className={`border border-white/20 bg-gradient-to-br ${tech.bgColor} p-6 shadow-[0_0_24px_rgba(255,255,255,0.08)] transition-all duration-300 group-hover:border-cyan-300/70 group-hover:shadow-[0_0_28px_rgba(34,211,238,0.28)]`}>
-              <img
-                src={tech.icon}
-                alt={tech.name}
-                className="h-12 w-12 opacity-100 brightness-150 contrast-150 saturate-200 drop-shadow-[0_0_14px_rgba(255,255,255,0.5)] transition-all duration-300 group-hover:brightness-[1.8] group-hover:drop-shadow-[0_0_20px_rgba(34,211,238,0.75)]"
-              />
+          <div className="hermes-cell col-span-full !p-0">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
+              {technologies.map((tech, index) => (
+                <article key={tech.name} className="hermes-hover tech-logo-card border-b border-current/20 p-4 sm:p-5 lg:border-r">
+                  <div className="flex items-center justify-between">
+                    <small className="font-mono text-[0.6875rem] uppercase tracking-[0.16em] opacity-40">
+                      {String(index + 1).padStart(2, "0")}
+                    </small>
+                    <span className="premium-chip hidden sm:inline-flex">{tech.category}</span>
+                  </div>
+
+                  <div className="mt-6 grid place-items-center">
+                    <div className="tech-logo-frame">
+                      <img src={tech.icon} alt={`${tech.name} logo`} loading="lazy" className="h-12 w-12 object-contain sm:h-14 sm:w-14" />
+                    </div>
+                  </div>
+
+                  <h3 className="mt-5 text-center font-mono text-[0.875rem] font-semibold uppercase tracking-[0.16em]">
+                    {tech.name}
+                  </h3>
+                  <p className="mt-2 text-center font-mono text-[0.6875rem] uppercase tracking-[0.14em] opacity-45 sm:hidden">
+                    {tech.category}
+                  </p>
+                </article>
+              ))}
             </div>
-            <span className="text-sm font-medium text-gray-300 text-center group-hover:text-cyan-400 transition-colors duration-300">
-              {tech.name}
-            </span>
-            <div className="h-2 w-full overflow-hidden border border-cyan-300/30 bg-black">
-              <div className="h-full bg-[repeating-linear-gradient(90deg,#67e8f9_0_6px,#22c55e_6px_10px)]" style={{ width: `${72 + (index % 4) * 7}%` }} />
-            </div>
-          </div>
-        ))}
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };

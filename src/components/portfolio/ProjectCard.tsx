@@ -1,6 +1,5 @@
 import React from "react";
-import { Button } from "@/components/ui/button";
-import { Code2, ExternalLink, FileCode2, Github, TerminalSquare } from "lucide-react";
+import { ArrowUpRight, Github } from "lucide-react";
 
 type ProjectCardProps = {
   title: string;
@@ -15,72 +14,37 @@ type ProjectCardProps = {
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({ title, subtitle, tech, problem, solution, codeUrl, demoUrl, image }) => {
   return (
-    <article className="group retro-window scan-panel h-full transition-all duration-300 hover:-translate-y-1 hover:border-cyan-200/50">
-      <div className="p-4 pt-8 sm:p-5 sm:pt-9">
-        <div className="mb-4 flex items-center justify-between border border-cyan-300/45 bg-black px-3 py-2 font-mono text-xs text-cyan-100 shadow-[inset_1px_1px_0_rgba(255,255,255,0.12)]">
-          <span className="flex min-w-0 items-center gap-2">
-            <FileCode2 className="h-4 w-4 shrink-0" />
-            <span className="truncate">{title}.exe</span>
-          </span>
-          <span className="text-emerald-300">READY</span>
+    <article className="hermes-hover flex h-full flex-col border-b border-current/20 p-4 lg:border-r">
+      {image && (
+        <div className="mb-5 border-4 border-double border-current/40 bg-background/40 p-2">
+          <img src={image} alt={title} className="aspect-[16/9] w-full object-cover opacity-80 transition-opacity duration-200 hover:opacity-100" />
         </div>
+      )}
 
-        {image && (
-          <div className="mb-5 h-44 overflow-hidden border-2 border-cyan-300/30 bg-black">
-            <img
-              src={image}
-              alt={title}
-              className="h-full w-full object-cover opacity-90 transition-transform duration-500 group-hover:scale-105"
-            />
-          </div>
+      <small className="section-eyebrow opacity-60">{subtitle}</small>
+      <h3 className="mt-3 text-2xl font-semibold uppercase leading-tight tracking-[0.035em]">{title}</h3>
+      <p className="mt-4 text-[0.98rem] leading-relaxed tracking-normal opacity-60" style={{ textTransform: "none" }}>{problem}</p>
+      <p className="mt-3 text-[0.98rem] leading-relaxed tracking-normal opacity-70" style={{ textTransform: "none" }}>{solution}</p>
+
+      <div className="mt-5 flex flex-wrap gap-2">
+        {tech.map((item) => (
+          <span key={item} className="premium-chip">{item}</span>
+        ))}
+      </div>
+
+      <div className="mt-auto flex flex-col gap-3 pt-6 sm:flex-row">
+        {demoUrl && (
+          <a href={demoUrl} target="_blank" rel="noopener noreferrer" className="premium-button flex-1 px-3 py-2.5">
+            Live Demo
+            <ArrowUpRight className="h-4 w-4" />
+          </a>
         )}
-
-        <div className="space-y-4">
-          <div className="space-y-2">
-            <h3 className="glitch-hover text-lg font-semibold text-white transition-colors group-hover:text-cyan-200 sm:text-xl">{title}</h3>
-            <p className="font-mono text-xs uppercase tracking-[0.16em] text-cyan-300">{subtitle}</p>
-          </div>
-
-          <div className="flex flex-wrap gap-2">
-            {tech.map((t) => (
-              <span key={t} className="chrome-chip px-2.5 py-1 font-mono text-[0.68rem]">
-                {t}
-              </span>
-            ))}
-          </div>
-
-          <div className="space-y-3 border border-cyan-300/25 bg-black p-4 shadow-[inset_1px_1px_0_rgba(255,255,255,0.1)]">
-            <div className="space-y-1">
-              <h4 className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.14em] text-cyan-200">
-                <Code2 className="h-4 w-4" /> Problem
-              </h4>
-              <p className="text-sm leading-relaxed text-slate-300">{problem}</p>
-            </div>
-            <div className="space-y-1">
-              <h4 className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.14em] text-emerald-200">
-                <TerminalSquare className="h-4 w-4" /> Solution
-              </h4>
-              <p className="text-sm leading-relaxed text-slate-300">{solution}</p>
-            </div>
-          </div>
-
-          <div className="flex flex-col gap-3 pt-1 sm:flex-row">
-            {codeUrl && (
-              <Button variant="outline" size="sm" className="retro-button w-full gap-2 sm:w-auto" asChild>
-                <a href={codeUrl} target="_blank" rel="noopener noreferrer">
-                  <Github className="h-4 w-4" /> Source
-                </a>
-              </Button>
-            )}
-            {demoUrl && (
-              <Button size="sm" className="retro-button w-full gap-2 sm:w-auto" asChild>
-                <a href={demoUrl} target="_blank" rel="noopener noreferrer">
-                  <ExternalLink className="h-4 w-4" /> Launch
-                </a>
-              </Button>
-            )}
-          </div>
-        </div>
+        {codeUrl && (
+          <a href={codeUrl} target="_blank" rel="noopener noreferrer" className="premium-button-secondary flex-1 px-3 py-2.5">
+            <Github className="h-4 w-4" />
+            Source
+          </a>
+        )}
       </div>
     </article>
   );

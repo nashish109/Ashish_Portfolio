@@ -76,8 +76,8 @@ export default {
 				sm: 'calc(var(--radius) - 4px)'
 			},
 			fontFamily: {
-				display: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
-				sans: ['"Plus Jakarta Sans"', 'ui-sans-serif', 'system-ui'],
+				display: ['"Manrope"', '"Inter"', 'system-ui', 'sans-serif'],
+				sans: ['"Inter"', '"IBM Plex Sans"', 'ui-sans-serif', 'system-ui'],
 				mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular']
 			},
 			boxShadow: {

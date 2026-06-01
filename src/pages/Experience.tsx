@@ -2,17 +2,18 @@ import { Timeline } from "@/components/portfolio/Timeline";
 
 const Experience = () => {
   return (
-    <div className="py-12">
-      <section className="container mx-auto px-4 sm:px-6">
-        <div className="text-center space-y-8">
-          <p className="retro-kicker">Archive / Work Logs</p>
-          <h2 className="retro-title text-3xl sm:text-4xl md:text-5xl">
-            Experience <span className="text-cyan-400">Timeline</span>
-          </h2>
-          <Timeline />
+    <section id="experience" className="section-block">
+      <div className="section-wrap">
+        <div className="hermes-grid">
+          <div className="hermes-cell col-span-full text-center">
+            <h2 className="section-title mt-1">Experience Timeline</h2>
+          </div>
+          <div className="hermes-cell col-span-full">
+            <Timeline />
+          </div>
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
   );
 };
 
