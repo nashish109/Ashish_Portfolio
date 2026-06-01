@@ -90,7 +90,7 @@ const research = [
   {
     icon: Award,
     title: "TVS Credit E.P.I.C. Challenge - Semi-Finalist",
-    date: "2024",
+    date: "August 15, 2024",
     logo: "/company-logos/TVS-Credit.webp",
     description: [
       "Achieved semi-finalist status among 40,000+ participants in a national analytics and IT competition.",
